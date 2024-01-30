@@ -9,7 +9,7 @@ ENV NAGIOS_VERSION=4.5.0 \
 
 # Install nagios and nagios plugins dependencies
 RUN yum update -y
-RUN yum install gcc glibc glibc-common wget unzip httpd php gd gd-devel perl postfix
+RUN yum install -y gcc glibc glibc-common wget unzip httpd php gd gd-devel perl postfix
 
 WORKDIR /tmp
 
@@ -55,8 +55,7 @@ RUN ./tools/setup && \
     make && \
     make install
 
-# Install nrdp
-
+#Installing NRDP
 WORKDIR /tmp
 RUN wget -O nrdp.tar.gz https://github.com/NagiosEnterprises/nrdp/archive/${NRDP_VERSION}.tar.gz && \
     tar xzf nrdp.tar.gz && \
