@@ -20,8 +20,8 @@ RUN wget -O nagioscore.tar.gz https://github.com/NagiosEnterprises/nagioscore/ar
 WORKDIR /tmp/nagioscore-nagios-${NAGIOS_VERSION}/
 
 # compile
-RUN ./configure && \
-    make all
+RUN ./configure
+RUN make all
 
 # Create user and group
 RUN make install-groups-users && \
