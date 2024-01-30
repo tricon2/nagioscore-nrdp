@@ -9,7 +9,8 @@ ENV NAGIOS_VERSION=4.5.0 \
 
 # Install nagios and nagios plugins dependencies
 RUN yum update -y
-RUN yum install -y gcc glibc glibc-common wget unzip httpd php gd gd-devel perl postfix openssl-devel make
+RUN yum install -y gcc glibc glibc-common wget unzip httpd php gd gd-devel perl postfix gettext make automake autoconf openssl-devel net-snmp net-snmp-utils epel-release
+RUN yum install -y perl-Net-SNMP
 
 WORKDIR /tmp
 
@@ -37,9 +38,6 @@ RUN make install && \
 
 # Create nagios user account
 RUN htpasswd -b -c /usr/local/nagios/etc/htpasswd.users ${ADMINUSER} ${ADMINPASS}
-
-RUN yum install -y gcc glibc glibc-common make gettext automake autoconf wget openssl-devel net-snmp net-snmp-utils epel-release
-RUN yum install -y perl-Net-SNMP
 
 WORKDIR /tmp
 
